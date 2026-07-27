@@ -61,4 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (urlInput.value) {
         screenshotBtn.removeAttribute('disabled');
     }
-})
+});
+
+const viewportNotes = document.getElementById('viewport-notes');
+const saveNotesBtn = document.getElementById('save-notes-btn');
+
+// Unique key for localStorage (based on current URL)
+function getStorageKey() {
+    const currentUrl = urlInput.value.trim() || 'default';
+    return `viewport_notes_${currentUrl}`;
+}
+
+// Load notes for the current URL
+
+function loadNotes() {
+    const key = getStorageKey();
+    const savedNotes = localStorage.getItem(key);
+    viewportNotes.value = savedNotes ? savedNotes : '';
+}
