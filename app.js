@@ -52,5 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    
+    // 3. Notes Sidebar Show/Hide
+    notesToggleBtn.addEventListener('click', () => {
+        notesSidebar.classList.toggle('hidden');
+    });
+
+    // Secure initial loading
+    if (urlInput.value) {
+        screenshotBtn.removeAttribute('disabled');
+    }
 })
