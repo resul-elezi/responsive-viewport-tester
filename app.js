@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenshotBtn = document.getElementById('screenshot-btn');
     const notesToggleBtn = document.getElementById('notes-toggle-btn');
     const notesSidebar = document.getElementById('notes-sidebar');
+    const viewportNotes = document.getElementById('viewport-notes');
+    const saveNotesBtn = document.getElementById('save-notes-btn');
 
     // 1. Loading URL in the Iframe
     function loadUrl() {
@@ -61,39 +63,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (urlInput.value) {
         screenshotBtn.removeAttribute('disabled');
     }
+
+    // Unique key for localStorage (based on current URL)
+    function getStorageKey() {
+        const currentUrl = urlInput.value.trim() || 'default';
+        return `viewport_notes_${currentUrl}`;
+    }
+
+    // Load notes for the current URL
+    function loadNotes() {
+        const key = getStorageKey();
+        const savedNotes = localStorage.getItem(key);
+        viewportNotes.value = savedNotes ? savedNotes : '';
+    }
+
+    // Save notes
+    saveNotesBtn.addEventListener('click', () => {
+        const key = getStorageKey();
+        const content = viewportNotes.value;
+        localStorage.setItem(key, content);
+
+        // Short optical feedback when saving
+        const originalText = saveNotesBtn.textContent;
+        saveNotesBtn.textContent = 'Saved!';
+        setTimeout(() =>{
+            saveNotesBtn.textContent = originalText;
+        }, 1500);
+    });
+
+    // Load notes when the URL changes or is reloaded
+    loadBtn.addEventListener('click', loadNotes);
+
+    loadNotes();
 });
-
-const viewportNotes = document.getElementById('viewport-notes');
-const saveNotesBtn = document.getElementById('save-notes-btn');
-
-// Unique key for localStorage (based on current URL)
-function getStorageKey() {
-    const currentUrl = urlInput.value.trim() || 'default';
-    return `viewport_notes_${currentUrl}`;
-}
-
-// Load notes for the current URL
-function loadNotes() {
-    const key = getStorageKey();
-    const savedNotes = localStorage.getItem(key);
-    viewportNotes.value = savedNotes ? savedNotes : '';
-}
-
-// Save notes
-saveNotesBtn.addEventListener('click', () => {
-    const key = getStorageKey();
-    const content = viewportNotes.value;
-    localStorage.setItem(key, content);
-
-    // Short optical feedback when saving
-    const originalText = saveNotesBtn.textContent;
-    saveNotesBtn.textContent = 'Saved!';
-    setTimeout(() =>{
-        saveNotesBtn.textContent = originalText;
-    }, 1500);
-});
-
-// Load notes when the URL changes or is reloaded
-loadBtn.addEventListener('click', loadNotes);
-
-loadNotes();
