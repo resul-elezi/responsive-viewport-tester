@@ -73,7 +73,6 @@ function getStorageKey() {
 }
 
 // Load notes for the current URL
-
 function loadNotes() {
     const key = getStorageKey();
     const savedNotes = localStorage.getItem(key);
@@ -93,3 +92,8 @@ saveNotesBtn.addEventListener('click', () => {
         saveNotesBtn.textContent = originalText;
     }, 1500);
 });
+
+// Load notes when the URL changes or is reloaded
+loadBtn.addEventListener('click', loadNotes);
+
+loadNotes();
