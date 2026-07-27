@@ -79,3 +79,17 @@ function loadNotes() {
     const savedNotes = localStorage.getItem(key);
     viewportNotes.value = savedNotes ? savedNotes : '';
 }
+
+// Save notes
+saveNotesBtn.addEventListener('click', () => {
+    const key = getStorageKey();
+    const content = viewportNotes.value;
+    localStorage.setItem(key, content);
+
+    // Short optical feedback when saving
+    const originalText = saveNotesBtn.textContent;
+    saveNotesBtn.textContent = 'Saved!';
+    setTimeout(() =>{
+        saveNotesBtn.textContent = originalText;
+    }, 1500);
+});
