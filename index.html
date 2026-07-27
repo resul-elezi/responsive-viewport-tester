@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Viewport Tester with Notes</title>
+</head>
+<body>
+    <!-- Steuerungsleiste (Toolbar) -->
+     <header class="toolbar">
+        <div class="toolbar-group">
+            <label for="url-input">URL:</label>
+            <input type="text" id="url-input" value="https://example.com" placeholder="https://example.com">
+            <button id="load-btn">Loading</button>
+        </div>
+
+        <div class="toolbar-group presets">
+            <button class="preset-btn" data-width="375" data-height="667">Mobile (375x667)</button>
+            <button class="preset-btn" data-width="768" data-height="1024">Tablet (768x1024)</button>
+            <button class="preset-btn" data-width="1280" data-height="800">Desktop (1280x800)</button>
+        </div>
+
+        <div class="toolbar-group slider-group">
+            <label for="width-slider">Width: <span id="width-value">1280</span>px</label>
+            <input type="range" id="width-slider" min="320" max="1920" value="1280">
+        </div>
+
+        <div class="toolbar-group actions">
+            <button id="screenshot-btn" disabled>Screenshot</button>
+            <button id="notes-toggle-btn">Notes</button>
+        </div>
+    </header>
+
+    <!-- Main area for Viewport and Notes -->
+    <main class="main-container">
+        <div class="viewport-wrapper">
+            <div class="viewport-frame-container" id="frame-container" style="width: 1280px;">
+                <iframe id="viewport-iframe" src="https://example.com" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+                <div class="resize-handle"></div>
+            </div>
+        </div>
+
+        <!-- Note sidebar (folded or switchable by default) -->
+        <aside class="notes-sidebar hidden" id="notes-sidebar">
+            <h3>Notes for current viewport</h3>
+            <textarea id="viewport-notes" placeholder="Capture bugs or design errors here..."></textarea>
+            <button id="save-notes-btn">Save</button>
+        </aside>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
+    
+</body>
+</html>
