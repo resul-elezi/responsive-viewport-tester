@@ -1,0 +1,147 @@
+:root {
+    --bg-color: #1e1e2e;
+    --toolbar-bg: #252538;
+    --border-color: #383852;
+    --text-color: #cdd6f4;
+    --accent-color: #89b4fa;
+    --accent-hover: #b4befe;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Toolbar */
+.toolbar {
+    background-color: var(--toolbar-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toolbar input[type="text"] {
+    background: #11111b;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 6px 10px;
+    border-radius: 4px;
+    width: 250px;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: #11111b;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+}
+
+.preset-btn {
+    background-color: #313244;
+    color: var(--text-color);
+}
+
+.preset-btn:hover {
+    background-color: #45475a;
+}
+
+.slider-group input[type="range"] {
+    accent-color: var(--accent-color);
+    cursor: ew-resize;
+}
+
+/* Main Container */
+.main-container {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.viewport-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #11111b;
+    padding: 20px;
+    overflow: auto;
+}
+
+.viewport-frame-container {
+    position: relative;
+    height: 80vh;
+    max-height: 900px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.1s ease-out;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Notes Sidebar */
+.notes-sidebar {
+    width: 300px;
+    background-color: var(--toolbar-bg);
+    border-left: 1px solid var(--border-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.3s ease;
+}
+
+.notes-sidebar.hidden {
+    transform: translateX(100%);
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+.notes-sidebar textarea {
+    flex: 1;
+    background: #11111b;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 4px;
+    resize: none;
+    font-family: inherit;
+}
