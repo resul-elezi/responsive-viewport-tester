@@ -32,5 +32,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 2. Update Viewport Width
+    function setViewportWidth(width) {
+        frameContainer.style.width = width + 'px';
+        widthSlider.value = width;
+        widthValue.textContent = width;
+    }
+
+    // Slider-Event
+    widthSlider.addEventListener('input', (e) => {
+        setViewportWidth(e.target.value);
+    });
+
+    // Preset-Events
+    presetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const width = btn.getAttribute('data-width');
+            setViewportWidth(width);
+        });
+    });
+
     
 })
